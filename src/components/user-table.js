@@ -1,5 +1,5 @@
 // components/UserTable.js
-const UserTable = ({ users }) => {
+const UserTable = ({ users,onEdit }) => {
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-md">
       <table className="w-full text-left table-auto">
@@ -21,7 +21,7 @@ const UserTable = ({ users }) => {
               <td className="py-3 px-6">{user.name}</td>
               <td className="py-3 px-6">{user.gender}</td>
               <td className="py-3 px-6 text-right">
-                <button className="bg-gray-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-gray-700 transition">
+                <button onClick={onEdit} className="bg-gray-600 text-white px-3 py-1 rounded-md mr-2 hover:bg-gray-700 transition">
                   Edit
                 </button>
                 <button className="bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-black transition">

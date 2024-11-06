@@ -4,13 +4,14 @@ import Sidebar from "@/components/sidebar";
 import Header from "@/components/header";
 import UserForm from "@/components/user-form";
 import UserTable from "@/components/user-table";
+import Modal from "@/components/commons/modal";
 
 const Admin = () => {
   const [users, setUsers] = useState([
     { id: 1, name: "Mehmet Sait Işık", gender: "Erkek" },
     { id: 2, name: "Köpek Cesur Işık", gender: "Erkek" },
   ]);
-
+  const [modal, setModal] = useState();
   const handleAddUser = (newUser) => {
     setUsers([
       ...users,
@@ -31,7 +32,8 @@ const Admin = () => {
       <div className="flex-1 p-10">
         <Header title="Users Management" />
         <UserForm onAddUser={handleAddUser} />
-        <UserTable users={users} />
+        <UserTable onEdit={()=>setModal(!modal)} users={users} />
+        {!modal && <Modal title={"başlık"} hideModal={() => setModal(!modal)} />}
       </div>
     </div>
   );
