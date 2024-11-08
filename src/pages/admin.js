@@ -11,7 +11,7 @@ const Admin = () => {
     { id: 1, name: "Mehmet Sait Işık", gender: "Erkek" },
     { id: 2, name: "Köpek Cesur Işık", gender: "Erkek" },
   ]);
-  const [modal, setModal] = useState();
+  const [modal, setModal] = useState(false);
   const handleAddUser = (newUser) => {
     setUsers([
       ...users,
@@ -33,7 +33,7 @@ const Admin = () => {
         <Header title="Users Management" />
         <UserForm onAddUser={handleAddUser} />
         <UserTable onEdit={()=>setModal(!modal)} users={users} />
-        {!modal && <Modal title={"başlık"} hideModal={() => setModal(!modal)} />}
+        {modal && <Modal title={"başlık"} hideModal={() => setModal(!modal)} />}
       </div>
     </div>
   );
