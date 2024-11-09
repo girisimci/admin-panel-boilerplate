@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import UserForm from "@/components/user-form";
 import UserTable from "@/components/user-table";
 import Modal from "@/components/commons/modal";
+import BaseTable from "@/components/base-table";
 
 const Admin = () => {
   const [users, setUsers] = useState([
@@ -29,10 +30,29 @@ const Admin = () => {
       <Sidebar />
 
       {/* Main Content */}
-      <div className="flex-1 p-10">
+      <div className="flex flex-col w-full p-10 gap-2">
         <Header title="Users Management" />
         <UserForm onAddUser={handleAddUser} />
         <UserTable onEdit={()=>setModal(!modal)} users={users} />
+          <BaseTable
+                head={[
+                    { title: "Ürün Id" },
+                    { title: "Ürün Adı" },
+                ]}
+                isLoading={false}
+                body={users?.map((item) => [
+                    item?.name,
+                    item?.gender,
+                ])}
+                searchable={true}
+                automaticPagination={true}
+                tableBtn={
+                    <div className=" border border-black text-center p-1 rounded-lg w-20 my-2">
+                      <button>button</button>
+                    </div>
+
+                }
+            />
         {modal && <Modal title={"başlık"} hideModal={() => setModal(!modal)} />}
       </div>
     </div>
