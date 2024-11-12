@@ -1,5 +1,12 @@
+import SidebarLayout from "@/layouts/sidebar-layout";
 import "@/styles/globals.css";
-
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+  return (
+    <SidebarLayout>
+      <Component {...pageProps} />
+    </SidebarLayout>
+  );
 }
+
+export default MyApp;
+

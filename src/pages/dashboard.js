@@ -64,9 +64,7 @@ const Dashboard = () => {
   };
 
   return (
-    <SidebarLayout>
       <Line data={data} options={options} />
-    </SidebarLayout>
   );
 };
 

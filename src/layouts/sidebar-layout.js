@@ -1,7 +1,9 @@
 // components/SidebarLayout.js
 import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-// Sidebar menü öğelerini array olarak tanımlayın
+// Menü öğelerini bir array olarak tanımlayın
 const menuItems = [
   {
     title: "Dashboard",
@@ -37,6 +39,7 @@ const menuItems = [
 
 const SidebarLayout = ({ children }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="flex h-screen">
@@ -55,9 +58,18 @@ const SidebarLayout = ({ children }) => {
 
         <ul className="space-y-6">
           {menuItems.map((item, index) => (
-            <li key={index} className="text-lg font-medium flex items-center gap-3">
+            <li
+              key={index}
+              className={`text-lg font-medium flex items-center gap-3 ${
+                router.pathname === item.url ? "text-blue-400" : "text-white"
+              }`}
+            >
               {item.icon}
-              {!menuCollapsed && <a href={item.url}>{item.title}</a>}
+              {!menuCollapsed && (
+                <Link className="hover:text-gray-200 transition" href={item.url}>
+                 {item.title}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

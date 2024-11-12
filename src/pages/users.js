@@ -43,7 +43,6 @@ const Users = () => {
   };
 
   return (
-    <SidebarLayout>
       <div className="flex h-screen bg-white text-black">
         <div className="flex flex-col w-full p-10 gap-2">
           <Header title="Users Management" />
@@ -111,7 +110,6 @@ const Users = () => {
           )}
         </div>
       </div>
-    </SidebarLayout>
   );
 };
 
