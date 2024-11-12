@@ -17,13 +17,7 @@ const Sidebar = () => {
         {menuCollapsed ? "➤" : "←"}
       </button>
 
-      <h2
-        className={`text-2xl font-bold mb-6 transition-opacity duration-300 ${
-          menuCollapsed ? "opacity-0" : "opacity-100"
-        }`}
-      >
-        CMS Admin
-      </h2>
+    
 
       <ul className="space-y-6">
         <li className="text-lg font-medium flex items-center gap-3">

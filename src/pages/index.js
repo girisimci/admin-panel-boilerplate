@@ -5,7 +5,7 @@ const Home  = () => {
 export async function getServerSideProps(context) {
   return {
     redirect: {
-      destination: '/admin',
+      destination: '/dashboard',
       permanent: false,
     },
   };
