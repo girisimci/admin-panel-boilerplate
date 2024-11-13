@@ -86,7 +86,9 @@ const BaseTable = (props, ref) => {
                     <td key={key}>
                       <div className="text-sm my-3 px-3">
                         {Array.isArray(item) ? (
-                          <div className="flex items-center gap-x-5 ">{item}</div>
+                          <div className="flex items-center gap-x-5 ">
+                            {item}
+                          </div>
                         ) : (
                           item
                         )}
@@ -101,25 +103,24 @@ const BaseTable = (props, ref) => {
       </div>
       {/* Pagination Controls */}
       <div className="flex items-center justify-between gap-4 my-4 ">
-  <button
-    className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition disabled:opacity-50"
-    onClick={() => handlePageChange(currentPage - 1)}
-    disabled={currentPage === 1}
-  >
-    Önceki
-  </button>
-  <span className="text-sm text-gray-700">
-    Sayfa {currentPage} / {pageCount}
-  </span>
-  <button
-    className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition disabled:opacity-50"
-    onClick={() => handlePageChange(currentPage + 1)}
-    disabled={currentPage === pageCount}
-  >
-    Sonraki
-  </button>
-</div>
-
+        <button
+          className="  px-1 md:px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition disabled:opacity-50"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Önceki
+        </button>
+        <span className="text-sm text-gray-700">
+          Sayfa {currentPage} / {pageCount}
+        </span>
+        <button
+          className="px-1 md:px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition disabled:opacity-50"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === pageCount}
+        >
+          Sonraki
+        </button>
+      </div>
     </>
   );
 };
