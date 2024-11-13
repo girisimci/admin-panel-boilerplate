@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Header from "@/components/header";
 import Modal from "@/components/commons/modal";
 import BaseTable from "@/components/base-table";
 import { useForm } from "react-hook-form";
@@ -43,7 +42,6 @@ const Users = () => {
   return (
     <div className="flex h-screen bg-white text-black">
       <div className="flex flex-col w-full p-10 gap-2">
-        <Header title="Users Management" />
         <BaseTable
           head={[{ title: "Kişi Adı" }, { title: "Kişi Cinsiyeti" }]}
           isLoading={false}
