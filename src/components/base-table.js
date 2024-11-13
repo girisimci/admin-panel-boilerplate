@@ -1,8 +1,11 @@
 import React, { useMemo, useState, useImperativeHandle } from "react";
 import Search from "./commons/search";
+
 const BaseTable = (props, ref) => {
   const { body, head, tableBtn, isLoading, searchable } = props;
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const filteredData = useMemo(() => {
     return (
@@ -20,6 +23,14 @@ const BaseTable = (props, ref) => {
     );
   }, [body, search]);
 
+  const paginatedData = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredData?.slice(startIndex, endIndex);
+  }, [filteredData, currentPage, itemsPerPage]);
+
+  const pageCount = Math.ceil((filteredData?.length || 0) / itemsPerPage);
+
   useImperativeHandle(
     ref,
     () => ({
@@ -30,16 +41,19 @@ const BaseTable = (props, ref) => {
     [filteredData]
   );
 
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= pageCount) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <>
-      <div className=" w-full flex flex-col justify-between items-center md:flex-row md:justify-between gap-12 bg-gray-100 px-4 py-2">
+      <div className="w-full flex flex-col justify-between items-center md:flex-row md:justify-between gap-12 bg-gray-100 px-4 py-2">
         {searchable && (
-            <Search
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+          <Search value={search} onChange={(e) => setSearch(e.target.value)} />
         )}
-          {tableBtn}
+        {tableBtn}
       </div>
       <div className="w-full border rounded bg-gray-100 overflow-auto">
         {isLoading ? (
@@ -63,7 +77,7 @@ const BaseTable = (props, ref) => {
               </tr>
             </thead>
             <tbody>
-              {filteredData?.map((items, key) => (
+              {paginatedData?.map((items, key) => (
                 <tr
                   className="group bg-gray-50 hover:bg-gray-100 border-b"
                   key={key}
@@ -72,9 +86,7 @@ const BaseTable = (props, ref) => {
                     <td key={key}>
                       <div className="text-sm my-3 px-3">
                         {Array.isArray(item) ? (
-                          <div className="flex items-center gap-x-5 ">
-                            {item}
-                          </div>
+                          <div className="flex items-center gap-x-5 ">{item}</div>
                         ) : (
                           item
                         )}
@@ -87,8 +99,29 @@ const BaseTable = (props, ref) => {
           </table>
         )}
       </div>
+      {/* Pagination Controls */}
+      <div className="flex items-center justify-between gap-4 my-4 ">
+  <button
+    className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition disabled:opacity-50"
+    onClick={() => handlePageChange(currentPage - 1)}
+    disabled={currentPage === 1}
+  >
+    Önceki
+  </button>
+  <span className="text-sm text-gray-700">
+    Sayfa {currentPage} / {pageCount}
+  </span>
+  <button
+    className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition disabled:opacity-50"
+    onClick={() => handlePageChange(currentPage + 1)}
+    disabled={currentPage === pageCount}
+  >
+    Sonraki
+  </button>
+</div>
+
     </>
   );
 };
 
-export default BaseTable;
+export default React.forwardRef(BaseTable);
