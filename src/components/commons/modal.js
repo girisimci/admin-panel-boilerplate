@@ -8,15 +8,13 @@ const Modal = ({ title, hideModal, children }) => {
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
             <div className="flex  items-start justify-between p-4 border-b rounded-t ">
-              <h3 className="text-xl font-semibold text-black">
-                {title}
-              </h3>
+              <h3 className="text-xl font-semibold text-black">{title}</h3>
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 onClick={hideModal}
               >
-X
+                X
               </button>
             </div>
 

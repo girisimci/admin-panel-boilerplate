@@ -4,6 +4,7 @@ import BaseTable from "@/components/base-table";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Button from "@/components/commons/button";
 
 const Users = () => {
   const [users, setUsers] = useState([
@@ -49,8 +50,8 @@ const Users = () => {
           searchable={true}
           automaticPagination={true}
           tableBtn={
-            <div className="border border-black text-center p-1 rounded-lg w-20 my-2">
-              <button onClick={() => setModal(true)}>Ekle</button>
+            <div className=" border-black text-center p-1 rounded-lg my-2">
+              <Button click={() => setModal(true)} name={"Ekle"} />
             </div>
           }
         />
@@ -89,12 +90,7 @@ const Users = () => {
                   </p>
                 )}
               </div>
-              <button
-                type="submit"
-                className="bg-black text-white hover:bg-gray-800 p-2 rounded w-full mt-4"
-              >
-                Ekle
-              </button>
+              <Button type="submit" name={"ekle"} />
             </form>
           </Modal>
         )}
