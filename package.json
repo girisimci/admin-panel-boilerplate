@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "@svgr/webpack": "^8.1.0",
     "chart.js": "^4.4.6",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",

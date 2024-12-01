@@ -1,0 +1,11 @@
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Clock" clip-path="url(#clip0_993_30729)">
+<path id="Clcok face" fill-rule="evenodd" clip-rule="evenodd" d="M6 1.5C3.51472 1.5 1.5 3.51472 1.5 6C1.5 8.48528 3.51472 10.5 6 10.5C8.48528 10.5 10.5 8.48528 10.5 6C10.5 3.51472 8.48528 1.5 6 1.5ZM1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6Z" fill="#383838" stroke="#BC9D31" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Arms" fill-rule="evenodd" clip-rule="evenodd" d="M6 3C6.13807 3 6.25 3.11193 6.25 3.25V6.39645L7.92678 8.07322C8.02441 8.17085 8.02441 8.32915 7.92678 8.42678C7.82915 8.52441 7.67085 8.52441 7.57322 8.42678L5.82322 6.67678C5.77634 6.62989 5.75 6.5663 5.75 6.5V3.25C5.75 3.11193 5.86193 3 6 3Z" fill="#383838" stroke="#BC9D31" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_993_30729">
+<rect width="12" height="12" fill="white"/>
+</clipPath>
+</defs>
+</svg>

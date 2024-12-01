@@ -103,7 +103,7 @@ const Input = (props) => {
               onKey
               onKeyUp={onKeyUp}
               onKeyDown={onKeyDown}
-              class=" bg-[#F0F0F0] pl-2 text-[#383838]  py-2  rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
+              class=" bg-gray-100 pl-2 text-[#383838]  py-2  rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
             />
           </div>
         </div>
@@ -135,7 +135,7 @@ const Input = (props) => {
               className=" absolute right-0 my-3 mx-2 "
               onClick={handleShow}
             >
-              {show ? <EyeOpenIcon /> : <EyeCloseIcon />}
+              {show ? <EyeOpenIcon /> : <EyeCloseIcon/>}
             </button>
           )}
         </div>
