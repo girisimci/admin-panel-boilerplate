@@ -1,8 +1,7 @@
-import LoginCard from "@/components/auth/login-card";
-import React from "react";
+import LoginForm from "@/components/auth/login-form";
 
 const login = () => {
-  return <LoginCard />;
+  return <LoginForm />;
 };
 login.getLayout = (page) => page;
 

@@ -1,8 +1,7 @@
-import RegisterCard from "@/components/auth/register-card";
-import React from "react";
+import RegisterForm from "@/components/auth/register-form";
 
 const Register = () => {
-  return <RegisterCard />;
+  return <RegisterForm />;
 };
 Register.getLayout = (page) => page;
 
