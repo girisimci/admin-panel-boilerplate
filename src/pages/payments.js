@@ -4,11 +4,24 @@ import BaseTable from "@/components/base-table";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Input from "@/components/commons/input";
 
 const Payments = () => {
   const [payments, setPayments] = useState([
-    { id: 1, name: "Mehmet Sait Işık", currency: "₺", monthlyPayment: 1000, yearlyPayment: 12000 },
-    { id: 2, name: "Köpek Cesur Işık", currency: "$", monthlyPayment: 200, yearlyPayment: 2400 },
+    {
+      id: 1,
+      name: "Mehmet Sait Işık",
+      currency: "₺",
+      monthlyPayment: 1000,
+      yearlyPayment: 12000,
+    },
+    {
+      id: 2,
+      name: "Köpek Cesur Işık",
+      currency: "$",
+      monthlyPayment: 200,
+      yearlyPayment: 2400,
+    },
   ]);
   const [modal, setModal] = useState(false);
 
@@ -79,12 +92,13 @@ const Payments = () => {
 
         {modal && (
           <Modal title="Yeni Ödeme Ekle" hideModal={() => setModal(false)}>
-            <form onSubmit={handleSubmit(handleAddPayment)} className="space-y-4">
+            <form
+              onSubmit={handleSubmit(handleAddPayment)}
+              className="space-y-4"
+            >
               <div>
-                <label className="block text-sm font-medium">
-                  Kullanıcı Adı
-                </label>
-                <input
+                <Input
+                  label="Kullanıcı Adı"
                   type="text"
                   {...register("name")}
                   className="border rounded w-full p-2"
@@ -96,12 +110,11 @@ const Payments = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium">Para Birimi</label>
                 <select
                   {...register("currency")}
                   className="border rounded w-full p-2"
                 >
-                  <option value="">Seçiniz</option>
+                  <option value="">Para Birimi Seçiniz</option>
                   <option value="₺">₺ - Türk Lirası</option>
                   <option value="$">$ - ABD Doları</option>
                   <option value="€">€ - Euro</option>
@@ -113,8 +126,8 @@ const Payments = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium">Aylık Ödeme</label>
-                <input
+              <Input
+                  label="Aylık Ödeme"
                   type="number"
                   {...register("monthlyPayment")}
                   className="border rounded w-full p-2"
@@ -126,8 +139,8 @@ const Payments = () => {
                 )}
               </div>
               <div>
-                <label className="block text-sm font-medium">Yıllık Ödeme</label>
-                <input
+               <Input
+                  label="Yıllık Ödeme"
                   type="number"
                   {...register("yearlyPayment")}
                   className="border rounded w-full p-2"

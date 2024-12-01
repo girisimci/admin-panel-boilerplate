@@ -1,5 +1,6 @@
 // components/UserForm.js
 import { useState } from "react";
+import Input from "./commons/input";
 
 const UserForm = ({ onAddUser }) => {
   const [newUser, setNewUser] = useState({ name: "", specialization: "" });
@@ -15,14 +16,14 @@ const UserForm = ({ onAddUser }) => {
       onSubmit={handleSubmit}
       className="flex items-center gap-4 bg-gray-100 p-6 rounded-lg shadow-md mb-10"
     >
-      <input
+      <Input
         type="text"
         className="flex-1 border border-gray-300 rounded-md p-3 focus:outline-none focus:border-gray-500 transition"
         placeholder="Name"
         value={newUser.name}
         onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
       />
-      <input
+      <Input
         type="text"
         className="flex-1 border border-gray-300 rounded-md p-3 focus:outline-none focus:border-gray-500 transition"
         placeholder="Specialization"
