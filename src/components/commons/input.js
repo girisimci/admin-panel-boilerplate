@@ -103,7 +103,7 @@ const Input = (props) => {
               onKey
               onKeyUp={onKeyUp}
               onKeyDown={onKeyDown}
-              class=" bg-gray-100 pl-2 text-[#383838]  py-2  rounded text-grey-darkest border border-grey-lighter rounded-l-none font-bold"
+              className=" bg-gray-100 pl-2 text-[#383838] py-2  rounded border border-grey-lighter rounded-l-none font-bold"
             />
           </div>
         </div>

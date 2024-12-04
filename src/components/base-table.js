@@ -79,7 +79,7 @@ const BaseTable = (props, ref) => {
             <tbody>
               {paginatedData?.map((items, key) => (
                 <tr
-                  className="group bg-gray-50 hover:bg-gray-100 border-b"
+                  className="group bg-gray-50 hover:bg-gray-100 border-b text-black"
                   key={key}
                 >
                   {items?.map((item, key) => (

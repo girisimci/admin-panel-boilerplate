@@ -4,7 +4,7 @@ const Search = ({ value, onChange }) => (
       placeholder="Search..."
       value={value}
       onChange={onChange}
-      className="border p-2 rounded max-w-72"
+      className="border p-2 rounded max-w-72 text-black"
     />
   );
   export default Search;
