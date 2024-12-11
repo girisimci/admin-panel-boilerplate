@@ -88,7 +88,7 @@ const CategoryManagementPage = () => {
               placeholder="Kategori adı girin"
             />
             <div className=" w-52">
-              <Button name="Kategori Ekle" click={() => setModal(true)} />
+              <Button name="Kategori Ekle" click={() => handleCreateCategory()} />
             </div>
           </div>
         </Modal>
