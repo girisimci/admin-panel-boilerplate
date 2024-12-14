@@ -13,7 +13,6 @@ const BlogManagementPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filePreview, setFilePreview] = useState("");
 
-
   const editor = useEditor({
     extensions: [StarterKit],
     content: "",
@@ -21,7 +20,6 @@ const BlogManagementPage = () => {
       setNewBlog({ ...newBlog, content: editor.getHTML() });
     },
   });
-
 
   const fetchBlogs = async () => {
     setIsLoading(true);
@@ -45,7 +43,6 @@ const BlogManagementPage = () => {
     setIsLoading(false);
   };
 
-
   const handleAddBlog = () => {
     if (!newBlog.title || !newBlog.content || !newBlog.image) return;
     const blog = {
@@ -55,7 +52,7 @@ const BlogManagementPage = () => {
     };
     setBlogs([...blogs, blog]);
     setNewBlog({ title: "", content: "", image: "" });
-    setFilePreview(""); 
+    setFilePreview("");
     editor.commands.setContent("");
     setIsModalOpen(false);
   };
@@ -132,10 +129,71 @@ const BlogManagementPage = () => {
               placeholder="Blog başlığı girin"
             />
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                İçerik
-              </label>
-              <EditorContent editor={editor} className="border p-12 rounded" />
+              <div>
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  İçerik
+                </label>
+                {/* Araç Çubuğu */}
+                <div className="flex gap-2 mb-2">
+                  <button
+                    onClick={() => editor.chain().focus().toggleBold().run()}
+                    className={`px-2 py-1 border rounded ${
+                      editor.isActive("bold") ? "bg-gray-200" : ""
+                    }`}
+                  >
+                    Kalın
+                  </button>
+                  <button
+                    onClick={() => editor.chain().focus().toggleItalic().run()}
+                    className={`px-2 py-1 border rounded ${
+                      editor.isActive("italic") ? "bg-gray-200" : ""
+                    }`}
+                  >
+                    İtalik
+                  </button>
+                 
+                  <button
+                    onClick={() =>
+                      editor.chain().focus().setHeading({ level: 1 }).run()
+                    }
+                    className={`px-2 py-1 border rounded ${
+                      editor.isActive("heading", { level: 1 })
+                        ? "bg-gray-200"
+                        : ""
+                    }`}
+                  >
+                    H1
+                  </button>
+                  <button
+                    onClick={() =>
+                      editor.chain().focus().setHeading({ level: 2 }).run()
+                    }
+                    className={`px-2 py-1 border rounded ${
+                      editor.isActive("heading", { level: 2 })
+                        ? "bg-gray-200"
+                        : ""
+                    }`}
+                  >
+                    H2
+                  </button>
+                  <button
+                    onClick={() =>
+                      editor.chain().focus().toggleBulletList().run()
+                    }
+                    className={`px-2 py-1 border rounded ${
+                      editor.isActive("bulletList") ? "bg-gray-200" : ""
+                    }`}
+                  >
+                    Liste
+                  </button>
+                </div>
+                {/* Editör İçeriği */}
+                <EditorContent
+                  editor={editor}
+                  className="border rounded w-full"
+                  style={{ height: "200px" }}
+                />
+              </div>
             </div>
             <div>
               <label className="block text-gray-700 text-sm font-bold mb-2">

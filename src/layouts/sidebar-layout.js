@@ -105,7 +105,6 @@ const SidebarLayout = ({ children }) => {
       {/* Main Content Area */}
       <main className="flex-1 overflow-auto bg-gray-50">
         <Header username={"mehmet sait ışık"} />
-
         {children}
       </main>
     </div>
