@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React, { forwardRef } from "react";
 import Modal from "@/components/commons/modal";
 import BaseTable from "@/components/base-table";
 import { useForm } from "react-hook-form";
@@ -31,13 +32,11 @@ const Payments = () => {
     monthlyPayment: yup
       .number()
       .typeError("Aylık ödeme sayı olmalıdır")
-      .required("Aylık ödeme zorunludur")
-      .positive("Aylık ödeme pozitif olmalıdır"),
+      .required("Aylık ödeme zorunludur"),
     yearlyPayment: yup
       .number()
       .typeError("Yıllık ödeme sayı olmalıdır")
-      .required("Yıllık ödeme zorunludur")
-      .positive("Yıllık ödeme pozitif olmalıdır"),
+      .required("Yıllık ödeme zorunludur"),
   });
 
   const {
@@ -126,7 +125,7 @@ const Payments = () => {
                 )}
               </div>
               <div>
-              <Input
+                <Input
                   label="Aylık Ödeme"
                   type="number"
                   {...register("monthlyPayment")}
@@ -139,7 +138,7 @@ const Payments = () => {
                 )}
               </div>
               <div>
-               <Input
+                <Input
                   label="Yıllık Ödeme"
                   type="number"
                   {...register("yearlyPayment")}
