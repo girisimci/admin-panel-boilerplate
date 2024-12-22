@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import TranslationSwitch from "./commons/translation-switch";
 
 const Header = ({ username }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -22,11 +23,14 @@ const Header = ({ username }) => {
         </svg>
         <span className=" font-bold">Cesur Wolf</span>
       </div>
+      <div className=" flex flex-row-reverse justify-end gap-4 items-center">
+      <TranslationSwitch/>
       <div className="relative inline-block">
         <button
           onClick={toggleDropdown}
           className="flex items-center gap-2 focus:outline-none text-sm"
         >
+
           <span className="font-medium">{username}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,13 +45,13 @@ const Header = ({ username }) => {
             />
           </svg>
         </button>
-
         {/* Dropdown */}
         {isDropdownOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded-md shadow-lg z-10">
             <div className="px-4 py-2 border-b border-gray-700 text-sm text-gray-300">
               {username}
             </div>
+
             <ul className="text-sm">
               <li>
                 <Link
@@ -56,6 +60,8 @@ const Header = ({ username }) => {
                 >
                   Hesap Bilgisi
                 </Link>
+              </li>
+              <li>
               </li>
               <li>
                 <button
@@ -68,6 +74,7 @@ const Header = ({ username }) => {
             </ul>
           </div>
         )}
+      </div>
       </div>
     </header>
   );

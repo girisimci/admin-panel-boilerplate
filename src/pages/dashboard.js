@@ -12,6 +12,7 @@ import {
   ArcElement,
   Legend,
 } from "chart.js";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
   LineElement,
@@ -65,9 +66,12 @@ const Dashboard = () => {
       y: { beginAtZero: true },
     },
   };
+  const { t, i18n } = useTranslation();
 
   return (
     <div className=" flex flex-col m-12 gap-12">
+            <h1>{t("welcome")}</h1>
+
       <Bar data={data} options={options} />
       <Line data={data} options={options} />
       <Doughnut data={data} options={options} />;
