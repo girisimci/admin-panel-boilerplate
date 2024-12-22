@@ -1,21 +1,14 @@
 import React from "react";
 
-const Button = ({ name, click,disabled, type, isOfferButton,width }) => {
-  let backgroundClass = ''
-  if(isOfferButton) {
-    backgroundClass = "bg-[#5F7E5F]"
-  } else {
-    if(disabled) {
-      backgroundClass = "bg-gray-800" 
-    } else {
-      backgroundClass = " bg-black text-white"
-    }
-  }
+const Button = ({ name, click, disabled, type, styleType = "primary", width }) => {
   return (
     <button
       type={type}
-      className= {`${width ? width : 'w-full'} min-w-[93px]  min-h-[31px] ${backgroundClass} hover:bg-gray-800 hover:text-white text-white rounded-md py-2 text-lg font-medium my-2 border border-white p-2 transition duration-700 ease-in-out `}
+      className={`button button-${styleType} ${disabled ? "button-disabled" : ""} ${
+        width ? width : "w-full"
+      }`}
       onClick={click}
+      disabled={disabled}
     >
       {name}
     </button>
