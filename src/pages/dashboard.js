@@ -26,6 +26,8 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
+  
+
   const data = {
     labels: [
       "Jan",
@@ -70,8 +72,7 @@ const Dashboard = () => {
 
   return (
     <div className=" flex flex-col m-12 gap-12">
-            <h1 className=" text-black">{t("welcome")}</h1>
-
+      <h1 className=" text-black">{t("welcome")}</h1>
       <Bar data={data} options={options} />
       <Line data={data} options={options} />
       <Doughnut data={data} options={options} />;
