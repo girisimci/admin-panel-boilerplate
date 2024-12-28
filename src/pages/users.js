@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@/components/commons/button";
+import { useGetUsersQuery } from "@/store/services/users-service";
 
 const Users = () => {
+  const { data:data_user } = useGetUsersQuery();
   const [users, setUsers] = useState([
     { id: 1, name: "Mehmet Sait Işık", gender: "Erkek" },
     { id: 2, name: "Köpek Cesur Işık", gender: "Erkek" },
@@ -44,9 +46,9 @@ const Users = () => {
     <div className="flex h-screen bg-white text-black">
       <div className="flex flex-col w-full p-10 gap-2">
         <BaseTable
-          head={[{ title: "Kişi Adı" }, { title: "Kişi Cinsiyeti" }]}
+          head={[{ title: "Kişi Adı" }, { title: "Kişi Mail" }]}
           isLoading={false}
-          body={users?.map((item) => [item?.name, item?.gender])}
+          body={data_user?.map((item) => [item?.name, item?.email])}
           searchable={true}
           automaticPagination={true}
           tableBtn={
