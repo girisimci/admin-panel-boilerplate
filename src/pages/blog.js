@@ -3,6 +3,7 @@ import BaseTable from "@/components/commons/base-table";
 import Button from "@/components/commons/button";
 import Input from "@/components/commons/input";
 import Modal from "@/components/commons/modal";
+import BlogPreview from "@/components/blog/blog-preview";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import {
@@ -15,6 +16,7 @@ import { useGetCategoriesQuery } from "@/store/services/category-service";
 
 const BlogManagementPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [filePreview, setFilePreview] = useState("");
   const [selectedBlog, setSelectedBlog] = useState(null);
 
@@ -106,6 +108,15 @@ const BlogManagementPage = () => {
       setFilePreview(previewUrl);
       setNewBlog({ ...newBlog, image: previewUrl });
     }
+  };
+
+  const handlePreview = () => {
+    const previewData = {
+      ...newBlog,
+      content: editor.getHTML(),
+      categoryName: categories.find(c => c.id === newBlog.categoryId)?.name
+    };
+    setIsPreviewOpen(true);
   };
 
   const tableHead = [
@@ -387,15 +398,26 @@ const BlogManagementPage = () => {
               </div>
             </div>
 
-            <div className="border-t pt-4">
+            <div className="border-t pt-4 flex justify-between">
               <Button
                 name={selectedBlog ? "Güncelle" : "Ekle"}
                 click={handleAddBlog}
+              />
+              <Button
+                name="Önizle"
+                click={handlePreview}
+                variant="secondary"
               />
             </div>
           </div>
         </Modal>
       )}
+
+      <BlogPreview
+        blog={newBlog}
+        isOpen={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+      />
     </div>
   );
 };
