@@ -11,6 +11,7 @@ import {
   useUpdateBlogMutation,
   useDeleteBlogMutation,
 } from "@/store/services/blog-service";
+import { useGetCategoriesQuery } from "@/store/services/category-service";
 
 const BlogManagementPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +20,7 @@ const BlogManagementPage = () => {
 
   // RTK Query hooks
   const { data: blogs = [], isLoading } = useGetBlogsQuery();
+  const { data: categories = [] } = useGetCategoriesQuery();
   const [addBlog] = useAddBlogMutation();
   const [updateBlog] = useUpdateBlogMutation();
   const [deleteBlog] = useDeleteBlogMutation();
@@ -32,6 +34,7 @@ const BlogManagementPage = () => {
     title: "",
     content: "",
     image: "",
+    categoryId: "",
     seo: {
       metaTitle: "",
       metaDescription: "",
@@ -107,15 +110,17 @@ const BlogManagementPage = () => {
 
   const tableHead = [
     { title: "Başlık", width: "20%" },
+    { title: "Kategori", width: "15%" },
     { title: "SEO URL", width: "15%" },
     { title: "Durum", width: "10%" },
     { title: "Yayın Tarihi", width: "15%" },
-    { title: "Yazar", width: "15%" },
-    { title: "İşlemler", width: "25%" },
+    { title: "Yazar", width: "10%" },
+    { title: "İşlemler", width: "15%" },
   ];
 
   const tableBody = blogs.map((blog) => [
     blog.title,
+    categories.find(c => c.id === blog.categoryId)?.name || "-",
     blog.seo?.slug,
     <span
       className={`px-2 py-1 rounded text-sm ${
@@ -174,6 +179,26 @@ const BlogManagementPage = () => {
                 }
                 placeholder="Blog başlığı girin"
               />
+
+              <div>
+                <label className="block text-black text-sm font-bold mb-2">
+                  Kategori
+                </label>
+                <select
+                  value={newBlog.categoryId}
+                  onChange={(e) =>
+                    setNewBlog({ ...newBlog, categoryId: e.target.value })
+                  }
+                  className="w-full p-2 border rounded text-black"
+                >
+                  <option value="">Kategori Seçin</option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               <div>
                 <label className="block text-black text-sm font-bold mb-2">

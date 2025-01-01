@@ -1,17 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Geçici mock veri
-const MOCK_BLOGS = [
+let MOCK_BLOGS = [
   {
     id: 1,
     title: "İlk Blog Yazısı",
     content: "<p>Blog içeriği burada...</p>",
+    categoryId: "1",
     seo: {
       metaTitle: "İlk Blog Yazısı | Benim Blogum",
       metaDescription: "Bu blog yazısında ilk deneyimlerimi paylaşıyorum.",
       slug: "ilk-blog-yazisi",
     },
-    status: "published", // published, draft
+    status: "published",
     publishDate: "2024-01-20T10:00:00Z",
     author: "Admin",
     image: "https://via.placeholder.com/800x400",
@@ -43,32 +44,38 @@ export const blogService = createApi({
 
     // Yeni blog ekle
     addBlog: builder.mutation({
-      queryFn: (blog) => ({
-        data: {
+      queryFn: (blog) => {
+        const newBlog = {
           id: Date.now(),
           ...blog,
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
-        },
-      }),
+        };
+        MOCK_BLOGS = [...MOCK_BLOGS, newBlog];
+        return { data: newBlog };
+      },
       invalidatesTags: ["Blogs"],
     }),
 
     // Blog güncelle
     updateBlog: builder.mutation({
-      queryFn: ({ id, ...update }) => ({
-        data: {
-          id,
-          ...update,
-          updatedAt: new Date().toISOString(),
-        },
-      }),
+      queryFn: ({ id, ...update }) => {
+        MOCK_BLOGS = MOCK_BLOGS.map(blog => 
+          blog.id === id 
+            ? { ...blog, ...update, updatedAt: new Date().toISOString() }
+            : blog
+        );
+        return { data: MOCK_BLOGS.find(blog => blog.id === id) };
+      },
       invalidatesTags: (result, error, { id }) => [{ type: "Blogs", id }],
     }),
 
     // Blog sil
     deleteBlog: builder.mutation({
-      queryFn: (id) => ({ data: id }),
+      queryFn: (id) => {
+        MOCK_BLOGS = MOCK_BLOGS.filter(blog => blog.id !== id);
+        return { data: id };
+      },
       invalidatesTags: ["Blogs"],
     }),
   }),
