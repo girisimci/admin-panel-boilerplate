@@ -12,7 +12,10 @@ import {
   ArcElement,
   Legend,
 } from "chart.js";
-import { useTranslation } from "react-i18next";
+import dynamic from 'next/dynamic';
+
+const useTranslation = dynamic(() => import('react-i18next'), { ssr: false });
+
 
 ChartJS.register(
   LineElement,
@@ -68,11 +71,9 @@ const Dashboard = () => {
       y: { beginAtZero: true },
     },
   };
-  const { t, i18n } = useTranslation();
-
   return (
     <div className=" flex flex-col m-12 gap-12">
-      <h1 className=" text-black">{t("welcome")}</h1>
+      <h1 className=" text-black">{}</h1>
       <Bar data={data} options={options} />
       <Line data={data} options={options} />
       <Doughnut data={data} options={options} />;
